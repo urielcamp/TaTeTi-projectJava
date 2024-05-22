@@ -12,7 +12,7 @@ public class TaTeTi {
 
     private void inicializarTablero(){
         for (int i = 0; i < tablero.length; i ++){
-            for (int j = 0; i < tablero.length; j++){
+            for (int j = 0; j < tablero.length; j++){
                 tablero[i][j] = '-';
             }
         }
@@ -32,14 +32,39 @@ public class TaTeTi {
             if (tablero[fila][columna] == '-'){
                 tablero[fila][columna] = jugadorActual;
 
-            }if () {
+            }if (filasCoinciden() || columnacoinciden() || diagonalCoinciden()) {
+                System.out.println("Felicidades, has ganado la partida");
+                bandera = false;
+
+            }else if (empate()){
+                System.out.println("Empate");
+                bandera = false;
 
 
-            }else{
+            } else if (jugadorActual == 'X'){
+                jugadorActual = 'O';
+
+            }else if (jugadorActual == 'O'){
+                jugadorActual = 'X';
+            }
+
+
+            else{
                 System.out.println("El casillero ua se encuentra ocupado");
             }
 
         }
+    }
+
+    private boolean empate(){
+        for (int i = 0; i < tablero.length; i++){
+            for (int j = 0; j < tablero.length; j++){
+                if (tablero[i][j] == '-'){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void mostrarTablero(){
